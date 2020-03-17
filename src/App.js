@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import axios from 'axios';
+import './css/tailwind.css';
+import Home_Component from './component/Home_Component';
+import Status_Component from './component/Status_Component';
 
 function App() {
+
+  const [coordinate, setCoordinate] = useState({
+    latitude: 0,
+    longitude: 0
+  })
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setCoordinate({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      });
+      console.log(coordinate)
+    })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Route exact path="/" component={Home_Component} coordinate={coordinate}/>
+      <Route path="/status/" component={Status_Component} coordinate={coordinate}/>
+    </Router>
   );
 }
 
