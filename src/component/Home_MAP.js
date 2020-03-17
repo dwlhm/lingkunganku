@@ -73,9 +73,6 @@ function Home_MAP(props) {
                     onViewportChange={setViewport}
                     mapboxApiAccessToken={"pk.eyJ1IjoibWF1bGFuYTAyNiIsImEiOiJjazFvODM2cXowZHNhM2hvaWttNnlkczFxIn0.GytjwhxtQ1VS1wysWsp89A"} 
                 >
-                    <Marker longitude="108.22367" latitude="-7.355238" class="preorder">
-                        <i className={`fas fa-map-marker-alt markerAlat markerTrashX sampah`}></i>
-                    </Marker>
                 </ReactMapGL>
             </div></div>
             )}
